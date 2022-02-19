@@ -9,7 +9,7 @@
 
 - name: Play for variable files
   hosts: all
-  var_files:
+  vars_files:
     - sample-vars.yml
   tasks:
     - name: Print url
