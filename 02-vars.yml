@@ -15,3 +15,17 @@
     - name: Print url
       ansible.builtin.debug:
         msg: URL-{{URL}}
+
+- name: Play for task level variables
+  hosts: all
+  tasks:
+    - name: print url1
+      ansible.builtin.debug:
+        msg: URL - {{URL}}
+      vars:
+        URL: tasks.example.com
+    - name: Print url2
+      ansible.builtin.debug:
+        msg: URL - {{URL}}
+      vars:
+        URL: secondtask.example.com
