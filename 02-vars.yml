@@ -61,3 +61,7 @@
     - name: print output
       ansible.builtin.debug:
         msg: "{{out.stdout}}"
+
+    - name: declare a variable
+      ansible.builtin.set_fact:
+        CMD_OUTPUT: "{{out.stdout}}"
