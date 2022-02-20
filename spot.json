@@ -3,4 +3,3 @@
   "SecurityGroupIds": [ "sg-02d4d87366398dd41" ],
   "InstanceType": "t3.micro"
   }
-}
