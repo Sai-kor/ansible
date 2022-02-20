@@ -5,4 +5,4 @@
 Temp_ID="lt-033d52657b386e840"
 Temp_ver=3
 
-aws ec2 run-instances --launch-template LaunchTemplateId=${Temp_ID},Version=${Temp_ver}
+aws ec2 run-instances --launch-template LaunchTemplateId=${Temp_ID},Version=${Temp_ver} |jq
