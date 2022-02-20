@@ -1,54 +1,58 @@
-- name: Play for variables
-  hosts: all
-  vars:
-    URL: play.example.com
-  tasks :
-    - name: print a value
-      ansible.builtin.debug:
-        msg: Value - {{URL}}
+#- name: Play for variables
+#  hosts: all
+#  vars:
+#    URL: play.example.com
+#  tasks :
+#    - name: print a value
+#      ansible.builtin.debug:
+#        msg: Value - {{URL}}
+#
+#- name: Play for variable files
+#  hosts: all
+#  vars_files:
+#    - sample-vars.yml
+#  tasks:
+#    - name: Print url
+#      ansible.builtin.debug:
+#        msg: URL-{{URL}}
+#
+#- name: Play for task level variables
+#  hosts: all
+#  tasks:
+#    - name: print url1
+#      ansible.builtin.debug:
+#        msg: URL - {{URL}}
+#      vars:
+#        URL: tasks.example.com
+#    - name: Print url2
+#      ansible.builtin.debug:
+#        msg: URL - {{URL}}
+#      vars:
+#        URL: secondtask.example.com
+#
+#- name: Play for inventory variables
+#  hosts: all
+#  tasks:
+#    - name: print URL
+#      ansible.builtin.debug:
+#        msg: URL - {{URL}}
+#
+#- name: Play for command line variables
+#  hosts: all
+#  tasks:
+#    - name: Print URL
+#      ansible.builtin.debug:
+#        msg: URL - {{URL}}
+#
+#- name: variable from facts
+#  hosts: all
+#  tasks:
+#    - name: Print fact
+#      ansible.builtin.debug:
+#        msg: Hostname - {{ansible_fqdn}}
 
-- name: Play for variable files
+- name: register variables
   hosts: all
-  vars_files:
-    - sample-vars.yml
   tasks:
-    - name: Print url
-      ansible.builtin.debug:
-        msg: URL-{{URL}}
-
-- name: Play for task level variables
-  hosts: all
-  tasks:
-    - name: print url1
-      ansible.builtin.debug:
-        msg: URL - {{URL}}
-      vars:
-        URL: tasks.example.com
-    - name: Print url2
-      ansible.builtin.debug:
-        msg: URL - {{URL}}
-      vars:
-        URL: secondtask.example.com
-
-- name: Play for inventory variables
-  hosts: all
-  tasks:
-    - name: print URL
-      ansible.builtin.debug:
-        msg: URL - {{URL}}
-
-- name: Play for command line variables
-  hosts: all
-  tasks:
-    - name: Print URL
-      ansible.builtin.debug:
-        msg: URL - {{URL}}
-
-- name: variable from facts
-  hosts: all
-  tasks:
-    - name: Print fact
-      ansible.builtin.debug:
-        msg: Hostname - {{ansible_fqdn}}
-
-
+    - name: uptime command
+      ansible.builtin.shell: uptime
