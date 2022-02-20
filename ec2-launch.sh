@@ -5,4 +5,4 @@
 Temp_ID="lt-033d52657b386e840"
 Temp_ver=3
 
-aws ec2 run-instances --launch-template LaunchTemplateId=${Temp_ID},Version=${Temp_ver} |jq
+aws ec2 run-instances --launch-template LaunchTemplateId=${Temp_ID},Version=${Temp_ver} --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=frontend}]" "ResourceType=instance,Tags=[{Key=Name,Value=frontend}]" |jq
