@@ -4,5 +4,14 @@
 #
 Temp_ID="lt-033d52657b386e840"
 Temp_ver=3
+#check if instance is already there
+
+ aws ec2 describe-instances --filters "Name=tag:Name,Values=frontend"|jq .Reservations[].Instances[].State.Name | sed 's/"//g' | grep -E 'running|stopped' &>/dev/null
+if [ $? -eq -0 ]; then
+   echo "Instance is already there"
+ exit
+fi
 
 aws ec2 run-instances --launch-template LaunchTemplateId=${Temp_ID},Version=${Temp_ver} --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=frontend}]" "ResourceType=instance,Tags=[{Key=Name,Value=frontend}]" |jq
+
+#update the DNS record
