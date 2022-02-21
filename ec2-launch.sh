@@ -19,13 +19,11 @@ ZONE_ID=Z0420516KHPFJFNWORZF
  aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}"|jq .Reservations[].Instances[].State.Name | sed 's/"//g' | grep -E 'running|stopped' &>/dev/null
 if [ $? -eq -0 ]; then
    echo -e "\e[1;33mInstance is already there\e[0m"
- exit
+ else
+   aws ec2 run-instances --launch-template LaunchTemplateId=${Temp_ID},Version=${Temp_ver} --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=${COMPONENT}}]" "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" |jq
 fi
-
-aws ec2 run-instances --launch-template LaunchTemplateId=${Temp_ID},Version=${Temp_ver} --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=${COMPONENT}}]" "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" |jq
-
 #update the DNS record
-IPADDRESS=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=frontend"| jq .Reservations[].Instances[].PrivateIpAddress | sed 's/"//g')
+IPADDRESS=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=frontend"| jq .Reservations[].Instances[].PrivateIpAddress | sed 's/"//g' |grep -v null)
 
 #sed -e "s/IPADDRESS/${IPADDRESS}/" -e "s/COMPONENT/${COMPONENT}/" record.json >/tmp/record.json
 sed -e "s/IPADDRESS/${IPADDRESS}/" -e "s/COMPONENT/${COMPONENT}/" record.json >/tmp/record.json
