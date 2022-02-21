@@ -22,8 +22,11 @@ CREATE_INSTANCE(){
    else
      aws ec2 run-instances --launch-template LaunchTemplateId=${Temp_ID},Version=${Temp_ver} --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=${COMPONENT}}]" "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" |jq
   fi
+
+  sleep 10
+
   #update the DNS record
-  IPADDRESS=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=frontend"| jq .Reservations[].Instances[].PrivateIpAddress | sed 's/"//g' |grep -v null)
+  IPADDRESS=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}"| jq .Reservations[].Instances[].PrivateIpAddress | sed 's/"//g' |grep -v null)
 
   #sed -e "s/IPADDRESS/${IPADDRESS}/" -e "s/COMPONENT/${COMPONENT}/" record.json >/tmp/record.json
   sed -e "s/IPADDRESS/${IPADDRESS}/" -e "s/COMPONENT/${COMPONENT}/" record.json >/tmp/record.json
