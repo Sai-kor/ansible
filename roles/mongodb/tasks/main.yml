@@ -23,9 +23,9 @@
 #
 
 - name: Copy MongoDB repo
-    ansible.builtin.copy:
-        src: mongo.repo
-        dest: /etc/yum.repos.d/mongodb.repo
+  ansible.builtin.copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongodb.repo
 
 - name: Update mongodb config file to listen on 0.0.0.0
   ansible.builtin.replace:
