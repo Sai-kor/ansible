@@ -34,7 +34,7 @@ CREATE_INSTANCE(){
 }
 
 if [ "${COMPONENT}" == "all" ]; then
- for comp in frontend mongodb catalogue ; do
+ for comp in frontend mongodb catalogue cart redis mysql dispatch payment shipping user rabbitmq ; do
    COMPONENT=$comp
    CREATE_INSTANCE
    done
