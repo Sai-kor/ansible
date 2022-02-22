@@ -18,7 +18,7 @@
 - name: Install Nginx
   ansible.builtin.yum:
     name: nginx
-    status: installed
+    state: installed
 
 #- name: Download fronend code
 #  ansible.builtin.get_url:
