@@ -8,7 +8,7 @@
 ## systemctl enable catalogue
 
 - name: Install Nodejs
-  ansible.buitlin.yum:
+  ansible.builtin.yum:
     name:
       - nodejs
       - make
