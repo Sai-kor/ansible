@@ -21,7 +21,8 @@
 #
 #    Symbol < will take the input from a file and give that input to the command.
 #
-  - name: Copy MongoDB repo
+
+- name: Copy MongoDB repo
     ansible.builtin.copy:
         src: mongo.repo
         dest: /etc/yum.repos.d/mongodb.repo
