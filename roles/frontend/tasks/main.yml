@@ -8,11 +8,10 @@
 #    url: https://github.com/roboshop-devops-project/frontend/archive/main.zip
 #    dest: /tmp/frontend.zip
 
-- name: Download and Unzip the frontend content
-  ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
-    dest: /tmp
-    remote_src: yes
+- name: Download and unzip Frontend files
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: download
 
 - name: Remove old html pages
   ansible.builtin.file:
