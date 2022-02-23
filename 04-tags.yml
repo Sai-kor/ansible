@@ -13,3 +13,10 @@
       debug:
         msg: common
 
+- name: demo of tag on play level - frontend
+  tags: frontend
+  hosts: localhost
+  tasks:
+    - name: frontend
+      debug:
+        msg: Hello from frontend
