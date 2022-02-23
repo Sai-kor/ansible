@@ -6,7 +6,7 @@
 - name: Install redis
   ansible.builtin.yum:
     name: redis
-    state: Installed
+    state: installed
 
 - name: Update redis config file to listen on 0.0.0.0
   ansible.builtin.replace:
