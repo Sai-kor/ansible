@@ -4,8 +4,9 @@
     - name: catalogue
       debug:
         msg: Hello from catalogue
+      tags: catalogue
     - name: frontend
       debug:
         msg: Hello from frontend
-
+      tags: frontend
 
