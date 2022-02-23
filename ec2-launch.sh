@@ -8,10 +8,14 @@ if [ -z "$1" ]; then
 fi
 
 COMPONENT=$1
+ENV=$2
+
+if [ -z "$ENV" ]; then
+  ENV="-${ENV}"
+fi
 
 Temp_ID="lt-033d52657b386e840"
 Temp_ver=3
-
 ZONE_ID=Z0420516KHPFJFNWORZF
 
 #check if instance is already there
@@ -34,10 +38,12 @@ CREATE_INSTANCE(){
 }
 
 if [ "${COMPONENT}" == "all" ]; then
- for comp in frontend mongodb catalogue cart redis mysql dispatch payment shipping user rabbitmq ; do
+ for comp in frontend$ENV mongodb$ENV catalogue$ENV  ; do
    COMPONENT=$comp
    CREATE_INSTANCE
    done
   else
+    COMPONENT=$COMPONENT$ENV
     CREATE_INSTANCE
 fi
+#cart$ENV redis$ENV mysql$ENV dispatch$ENV payment$ENV shipping$ENV user$ENV rabbitmq$ENV

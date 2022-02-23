@@ -42,4 +42,9 @@
     path: /home/roboshop/catalogue
   become_user: roboshop
 
-#- name: Updating IPaddress in systemd file
+- name: Update catalogue systemd file
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/catalogue.service
+
+
