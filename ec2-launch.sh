@@ -10,7 +10,7 @@ fi
 COMPONENT=$1
 ENV=$2
 
-if [ -z "$ENV" ]; then
+if [ ! -z "$ENV" ]; then
   ENV="-${ENV}"
 fi
 
