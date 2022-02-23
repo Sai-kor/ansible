@@ -9,4 +9,7 @@
       debug:
         msg: Hello from frontend
       tags: frontend
+    - name: common
+      debug:
+        msg: common
 
