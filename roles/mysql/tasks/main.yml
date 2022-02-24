@@ -1,37 +1,3 @@
-#    7. Run the following SQL commands to remove the password policy.
-#
-#    ```
-#    > uninstall plugin validate_password;
-#    ```
-#
-#
-#
-#  ## Setup Needed for Application.
-#
-#    As per the architecture diagram, MySQL is needed by
-#
-#  - Shipping Service
-#
-#
-#
-#    So we need to load that schema into the database, So those applications will detect them and run accordingly.
-#
-#    To download schema, Use the following command
-#
-#    ```
-#  # curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
-#    ```
-#
-#    Load the schema for Services.
-#
-#    ```
-#  # cd /tmp
-#  # unzip mysql.zip
-#  # cd mysql-main
-#  # mysql -u root -pRoboShop@1 <shipping.sql
-#    ```
-#
-#
 - name: Copy mysql repo file
   ansible.builtin.copy:
       src: mysql.repo
@@ -95,23 +61,23 @@
 #
 ##echo 'show plugins;'|mysql -uroot -pRoboshop@1
 #
-- name: Uninstall validate password plugin
-  ansible.builtin.shell: (echo 'show plugins;'|mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}" | grep 'validate_password') && (echo 'uninstall plugin validate_password;'|mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}")
-  ignore_errors: true
-#  when: out.rc | int == 0
-
-#- name: Check validate password plugin
-#  ansible.builtin.shell: echo 'show plugins;' | mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}" | grep validate_password
-#  ignore_errors: true
-#  register: out
-#
 #- name: Uninstall validate password plugin
-#  community.mysql.mysql_query:
-#    query: "uninstall plugin validate_password"
-#    login_user: root
-#    login_password: "{{MYSQL_ROOT_PASSWORD}}"
-#  when: out.rc | int == 0
+#  ansible.builtin.shell: (echo 'show plugins;'|mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}" | grep 'validate_password') && (echo 'uninstall plugin validate_password;'|mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}")
 #  ignore_errors: true
+##  when: out.rc | int == 0
+
+- name: Check validate password plugin
+  ansible.builtin.shell: echo 'show plugins;' | mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}" | grep validate_password
+  ignore_errors: true
+  register: out
+
+- name: Uninstall validate password plugin
+  community.mysql.mysql_query:
+    query: "uninstall plugin validate_password"
+    login_user: root
+    login_password: "{{MYSQL_ROOT_PASSWORD}}"
+  when: out.rc | int == 0
+  ignore_errors: true
 
 - name: Download mysql schema files
   ansible.builtin.import_role:
@@ -120,7 +86,8 @@
 
 - name: Load the schema
   community.mysql.mysql_db:
-    state: dump
+    state: import
+    name: all
     target: /tmp/mysql-main/shipping.sql
     login_user: root
     login_password: "{{MYSQL_ROOT_PASSWORD}}"
