@@ -20,5 +20,5 @@
 
     - name: condition on numbers
       ansible.builtin.debug:
-        msg: "val var is greater than 100"
+        msg: "val var is greater than orr ewual to 100"
       when: val >= 100
