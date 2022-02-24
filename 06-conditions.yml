@@ -4,10 +4,10 @@
     abc: ABC
   tasks:
     - name: condition on string
-      debug:
+      ansible.builtin.debug:
         msg: "abc var = ABC"
        when: abc == "ABC"
     - name: condition on string
-      debug:
+      ansible.builtin.debug:
         msg: "abc var = abc"
       when: abc == "abc"
