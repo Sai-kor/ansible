@@ -2,6 +2,7 @@
   hosts: localhost
   vars:
     abc: ABC
+    val: 100
   tasks:
     - name: condition on string
       ansible.builtin.debug:
@@ -11,3 +12,13 @@
       ansible.builtin.debug:
         msg: "abc var = abc"
       when: abc == "abc"
+
+    - name: condition on numbers
+          ansible.builtin.debug:
+            msg: "val var is less than 100"
+          when: val < 100
+
+    - name: condition on numbers
+      ansible.builtin.debug:
+        msg: "val var is greater than 100"
+      when: val >= 100
