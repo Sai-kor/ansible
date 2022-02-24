@@ -16,9 +16,9 @@
     - name: condition on numbers
       ansible.builtin.debug:
         msg: "val var is less than 100"
-      when: val < 100
+      when: val | int < 100
 
     - name: condition on numbers
       ansible.builtin.debug:
         msg: "val var is greater than orr ewual to 100"
-      when: val >= 100
+      when: val | int >= 100
