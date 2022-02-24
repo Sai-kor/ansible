@@ -112,3 +112,15 @@
     login_password: "{{MYSQL_ROOT_PASSWORD}}"
   when: out.rc | int == 0
   ignore_errors: true
+
+- name: Download mysql schema files
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: download
+
+- name: Load the schema
+  community.mysql.mysql_db:
+    state: dump
+    target: /tmp/mysql-main/shipping.sql
+    login_user: root
+    login_password: "{{MYSQL_ROOT_PASSWORD}}"
