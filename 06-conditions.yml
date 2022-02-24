@@ -2,7 +2,7 @@
   hosts: localhost
   vars:
     abc: ABC
-    val: 100
+    val: 50
     apply: true
   tasks:
     - name: condition on string
@@ -21,10 +21,16 @@
 
     - name: condition on numbers
       ansible.builtin.debug:
-        msg: "val var is greater than orr ewual to 100"
+        msg: "val var is greater than orr equal to 100"
       when: val | int >= 100
 
     - name: run on boolean
       ansible.builtin.debug:
         msg: "Applying"
       when: apply | bool
+
+    - name: multile conditions
+      ansible.builtin.debug:
+        msg: val of abc = ABC and val of val is 50
+      when: abc == "ABC" and val == 50
+
