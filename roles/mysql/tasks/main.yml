@@ -81,21 +81,34 @@
     - name: Change the password
       ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{mysql_default_password.stdout}}" < /tmp/root-pass-reset.sql
 
-- name: check if validate password plugin is there or not
-  community.mysql.mysql_query:
-    query: show plugins
-    login_user: root
-    login_password: "{{MYSQL_ROOT_PASSWORD}}"
-  register: out
-  ignore_errors: true
+#- name: check if validate password plugin is there or not
+#  community.mysql.mysql_query:
+#    query: show plugins
+#    login_user: root
+#    login_password: "{{MYSQL_ROOT_PASSWORD}}"
+#  register: out
+#  ignore_errors: true
+##
+##- name: print the status
+##  ansible.builtin.debug:
+##    msg : "{{out}}"
 #
-#- name: print the status
-#  ansible.builtin.debug:
-#    msg : "{{out}}"
+##echo 'show plugins;'|mysql -uroot -pRoboshop@1
+#
+#- name: Uninstall validate password plugin
+#  ansible.builtin.shell: (echo 'show plugins;'|mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}" | grep 'validate_password') && (echo 'uninstall plugin validate_password;'|mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}")
+#  ignore_errors: true
+#  when: out.rc | int == 0
 
-#echo 'show plugins;'|mysql -uroot -pRoboshop@1
+- name: Check validate password plugin
+  ansible.builtin.shell: echo 'show plugins;' | mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}" | grep validate_password
+  ignore_errors: true
+  register: out
 
 - name: Uninstall validate password plugin
-  ansible.builtin.shell: (echo 'show plugins;'|mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}" | grep 'validate_password') && (echo 'uninstall plugin validate_password;'|mysql -uroot -p"{{MYSQL_ROOT_PASSWORD}}")
-  ignore_errors: true
+  community.mysql.mysql_query:
+    query: "uninstall plugin validate_password"
+    login_user: root
+    login_password: "{{MYSQL_ROOT_PASSWORD}}"
   when: out.rc | int == 0
+  ignore_errors: true
