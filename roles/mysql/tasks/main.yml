@@ -85,10 +85,10 @@
   community.mysql.mysql_query:
     query: show plugins
     login_user: root
-    login_password:
+    login_password: "{{MYSQL_ROOT_PASSWORD}}"
   register: out
   ignore_errors: true
-
+#
 #- name: print the status
 #  ansible.builtin.debug:
 #    msg : "{{out}}"
