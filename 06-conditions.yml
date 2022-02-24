@@ -27,4 +27,4 @@
     - name: run on boolean
       ansible.builtin.debug:
         msg: "Applying"
-      when: apply
+      when: apply | bool
