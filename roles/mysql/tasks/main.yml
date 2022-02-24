@@ -1,10 +1,3 @@
-#    4. Now a default root password will be generated and given in the log file.
-#
-#    ```
-#  # grep temp /var/log/mysqld.log
-#
-#    ```
-#
 #    5. Next, We need to change the default root password in order to start using the database service.
 #
 #
@@ -74,6 +67,19 @@
   ansible.builtin.shell: grep 'temporary password' /var/log/mysqld.log |awk '{print $NF}'
   register: mysql_default_password
 
-- name: print the password
-  ansible.builtin.debug:
-      msg : "{{mysql_default_password}}"
+#- name: print the password
+#  ansible.builtin.debug:
+#      msg : "{{mysql_default_password.stdout}}"
+
+- name: Copy sql script for password reset
+  ansible.builtin.template:
+      src: root-pass-reset.sql
+      dest: /tmp/root-pass-reset.sql
+
+- name: Change the password
+  community.mysql.mysql_db:
+      state: import
+      name: all
+      target: /tmp/root-pass-reset.sql
+      login_user: root
+      login_password: "{{mysql_default_password.stdout}}"
