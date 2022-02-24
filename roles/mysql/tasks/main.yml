@@ -1,18 +1,3 @@
-#    5. Next, We need to change the default root password in order to start using the database service.
-#
-#
-#    ```
-#  # mysql_secure_installation
-#
-#    ```
-#    6. You can check the new password working or not using the following command.
-#
-#    ```
-#
-#  # mysql -u root -p
-#
-#    ```
-#
 #    7. Run the following SQL commands to remove the password policy.
 #
 #    ```
@@ -61,9 +46,9 @@
 
 - name: start mysql service
   ansible.builtin.systemd:
-      name: mysqld
-      state: restarted
-      enabled: true
+    name: mysqld
+    state: restarted
+    enabled: true
 
 - name: check if the new root paswd is working or not
   community.mysql.mysql_query:
@@ -76,21 +61,21 @@
 #  ansible.builtin.debug:
 #    msg : "{{out}}"
 
-- name: grab default password
-  ansible.builtin.shell: grep 'temporary password' /var/log/mysqld.log |awk '{print $NF}'
-  register: mysql_default_password
+- name: Change the default password
   when: out.failed | bool
+  block:
+    - name: grab default password
+      ansible.builtin.shell: grep 'temporary password' /var/log/mysqld.log |awk '{print $NF}'
+      register: mysql_default_password
 
-#- name: print the password
-#  ansible.builtin.debug:
-#      msg : "{{mysql_default_password.stdout}}"
+    #- name: print the password
+    #  ansible.builtin.debug:
+    #      msg : "{{mysql_default_password.stdout}}"
 
-- name: Copy sql script for password reset
-  ansible.builtin.template:
-      src: root-pass-reset.sql
-      dest: /tmp/root-pass-reset.sql
-  when: out.failed | bool
+    - name: Copy sql script for password reset
+      ansible.builtin.template:
+        src: root-pass-reset.sql
+        dest: /tmp/root-pass-reset.sql
 
-- name: Change the password
-  ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{mysql_default_password.stdout}}" < /tmp/root-pass-reset.sql
-  when: out.failed | bool
+    - name: Change the password
+      ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{mysql_default_password.stdout}}" < /tmp/root-pass-reset.sql
