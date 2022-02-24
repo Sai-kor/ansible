@@ -6,7 +6,7 @@
     - name: condition on string
       ansible.builtin.debug:
         msg: "abc var = ABC"
-       when: abc == "ABC"
+      when: abc == "ABC"
     - name: condition on string
       ansible.builtin.debug:
         msg: "abc var = abc"
