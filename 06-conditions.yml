@@ -14,9 +14,9 @@
       when: abc == "abc"
 
     - name: condition on numbers
-          ansible.builtin.debug:
-            msg: "val var is less than 100"
-          when: val < 100
+      ansible.builtin.debug:
+        msg: "val var is less than 100"
+      when: val < 100
 
     - name: condition on numbers
       ansible.builtin.debug:
