@@ -14,8 +14,8 @@
     requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
     executable: pip3
 
- - name: Show app user info
-   debug:
+- name: Show app user info
+  debug:
     msg: "{{app_user_info}}"
 #
 #- name: Setup service and start service
