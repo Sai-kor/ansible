@@ -1,4 +1,4 @@
-- name: Install Maven
+- name: Install python3
   ansible.builtin.yum:
     name:
       - python36
@@ -14,10 +14,21 @@
     requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
     executable: pip3
 
-- name: Show app user info
-  debug:
-    msg: "{{app_user_info}}"
-#
+#- name: Show app user info
+#  debug:
+#    msg: "{{app_user_info}}"
+
+- name: Update uid info in app configuration
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{COMPONENT}}/payment.ini
+    regexp: '^uid'
+    line: uid = {{app_user_info.uid}}
+
+- name: Update uid info in app configuration
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{COMPONENT}}/payment.ini
+    regexp: '^gid'
+    line: uid = {{app_user_info.group}}
 #- name: Setup service and start service
 #  import_tasks: systemd.yml
 
