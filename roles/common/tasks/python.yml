@@ -9,7 +9,7 @@
 - name: Aplicaton user setup and download app files
   import_tasks: app-user-setup.yml
 
-- name: Install pyhton dependencies
+- name: Install python dependencies
   ansible.builtin.pip:
     requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
     executable: pip3
