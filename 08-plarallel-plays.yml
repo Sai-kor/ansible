@@ -1,15 +1,15 @@
 - name: play1
   hosts: all
-  strategy: free
+#  strategy: free
   tasks:
-    - name: sleep for 10
-      shell: sleep 10
-    - name: sleep for another 10
-      shell: sleep 10
+    - name: sleep for 5
+      shell: sleep 5
+    - name: sleep for another 5
+      shell: sleep 5
 
-- name: play2
-  hosts: all
-  strategy: free
-  tasks:
-    - name: sleep for 10
-      shell: sleep 10
+#- name: play2
+#  hosts: all
+##  strategy: free
+#  tasks:
+#    - name: sleep for 10
+#      shell: sleep 10
