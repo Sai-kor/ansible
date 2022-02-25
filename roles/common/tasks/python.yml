@@ -31,6 +31,6 @@
     line: uid = {{app_user_info.group}}
 
 
-#- name: Setup service and start service
-#  import_tasks: systemd.yml
+- name: Setup service and start service
+  import_tasks: systemd.yml
 
