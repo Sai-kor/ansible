@@ -4,8 +4,12 @@
   tasks:
     - name: sleep for 5
       shell: sleep 5
+      async: 45
+      poll: 0
     - name: sleep for another 5
       shell: sleep 5
+      async: 45
+      poll: 0
 
 #- name: play2
 #  hosts: all
