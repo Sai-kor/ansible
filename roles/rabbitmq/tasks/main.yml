@@ -5,7 +5,7 @@
   ansible.builtin.yum:
     name:
       - rabbitmq-server
-      - install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
+      - https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
     state: present
 
 - name: start rabbitmq service
