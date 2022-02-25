@@ -1,0 +1,11 @@
+- name: play1
+  localhost: localhost
+  tasks:
+    - name: sleep for 10
+      shell: sleep 10
+
+- name: play2
+  localhost: localhost
+  tasks:
+    - name: sleep for 10
+      shell: sleep 10
