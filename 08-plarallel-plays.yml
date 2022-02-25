@@ -1,6 +1,6 @@
 - name: play1
   hosts: all
-#  strategy: free
+  strategy: free
   tasks:
     - name: sleep for 5
       shell: sleep 5
