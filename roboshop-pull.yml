@@ -1,6 +1,6 @@
-- name: "{{COMPONENT}}" setup
+- name: "{{COMPONENT}} setup"
   hosts: localhost
   become: yes
-  tags: "{{TAG}}"
+#  tags: "{{TAG}}" -- not needed as we only run one component at a time
   roles:
     - "{{COMPONENT}}"
