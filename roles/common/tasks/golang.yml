@@ -15,6 +15,6 @@
 #  debug:
 #    msg: "{{app_user_info}}"
 
-#- name: Setup service and start service
-#  import_tasks: systemd.yml
+- name: Setup service and start service
+  import_tasks: systemd.yml
 
