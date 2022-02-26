@@ -1,6 +1,10 @@
 pipeline {
     agent { label 'WORKSTATION' }
 
+    options {
+        ansiColor('xterm')
+    }
+
     stages {
         stage('ansible playbook run') {
             steps {
