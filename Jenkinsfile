@@ -11,13 +11,13 @@ pipeline {
     stages {
         stage('create server'){
             steps{
-                sh 'bash ec2-launch.sh ${COMPONENT}'
+                sh 'bash ec2-launch.sh ${COMPONENT} ${ENV}'
             }
         }
         stage('ansible playbook run') {
             steps {
                 script{
-                    def ANSIBLE_TAG=COMPONENT.toUpperCase()
+                    env.ANSIBLE_TAG=COMPONENT.toUpperCase()
                 }
                 sh 'ansible-playbook -i roboshop.inv roboshop.yml -e ENV=${ENV} -t ${ANSIBLE_TAG} '
             }
