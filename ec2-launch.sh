@@ -15,7 +15,7 @@ if [ ! -z "$ENV" ]; then
 fi
 
 Temp_ID="lt-033d52657b386e840"
-Temp_ver=4
+Temp_ver=5
 ZONE_ID=Z0420516KHPFJFNWORZF
 
 #check if instance is already there
