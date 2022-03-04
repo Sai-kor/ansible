@@ -83,6 +83,8 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: download
+  vars:
+  GIT_DOWNLOAD: true
 
 - name: Load the schema
   community.mysql.mysql_db:
