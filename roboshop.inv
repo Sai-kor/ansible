@@ -1,5 +1,5 @@
 [FRONTEND]
-frontend-dev.devops.internal
+frontend-dev.devops.internal APP_VERSION=1.0.1
 [MONGODB]
 mongodb-dev.devops.internal
 [RABBITMQ]
@@ -9,14 +9,14 @@ redis-dev.devops.internal
 [MYSQL]
 mysql-dev.devops.internal
 [CATALOGUE]
-catalogue-dev.devops.internal
+catalogue-dev.devops.internal APP_VERSION=1.0.0
 [USER]
-user-dev.devops.internal
+user-dev.devops.internal APP_VERSION=1.0.0
 [CART]
-cart-dev.devops.internal
+cart-dev.devops.internal APP_VERSION=1.0.3
 [SHIPPING]
-shipping-dev.devops.internal
+shipping-dev.devops.internal APP_VERSION=1.0.2
 [PAYMENT]
-payment-dev.devops.internal
+payment-dev.devops.internal APP_VERSION=1.0.0
 [DISPATCH]
-dispatch-dev.devops.internal
+dispatch-dev.devops.internal APP_VERSION=1.0.0
