@@ -43,4 +43,10 @@ scrape_configs:
             # if i have any instance with tag as monitor yes only that instances should be displayed.
 #          - name: tag:ENV
 #            values: dev
-
+ # Only monitor instances with a Name starting with "SD Demo" (regex:)
+     # Use the instance ID as the instance label
+    relabel_configs:
+      - source_labels: [__meta_ec2_tag_ENV]
+        target_label: environment
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: instanceName
