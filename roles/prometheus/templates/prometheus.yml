@@ -39,7 +39,7 @@ scrape_configs:
         port: 9100
         filters:
           - name: tag:Monitor
-            values: "yes"
+            values: [ "yes" ]
             # if i have any instance with tag as monitor yes only that instances should be displayed.
 #          - name: tag:ENV
 #            values: dev
