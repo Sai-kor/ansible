@@ -18,8 +18,19 @@
     src: appAlerts.yml
     dest: /opt/prometheus/appAlerts.yml
 
+- name: Update AlertManager Configuration
+  template:
+    src: alertmanager.yml
+    dest: /opt/prometheus/alertmanager.yml
+
 - name: Restart prometheus
   systemd:
     name: prometheus
+    state: restarted
+    enabled: yes
+
+- name: Restart AlertManager
+  systemd:
+    name: alertmanager
     state: restarted
     enabled: yes
