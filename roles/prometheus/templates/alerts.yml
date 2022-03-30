@@ -12,6 +12,7 @@ groups:
           summary: {%raw%}"Instance Down - IP - [{{ $labels.instance}}], Name - [{{ $labels.instanceName}}]"{%endraw%}
 
           description: {%raw%}"Instance Down - IP - [{{ $labels.instance}}], Name - [{{ $labels.instanceName}}]"{%endraw%}
+
       - alert: CpuUsageAlert
         expr: cpuUsagePercentage > 80
         for: 2m
@@ -23,6 +24,7 @@ groups:
           summary: {%raw%}"CPU Usage - IP - [{{ $labels.instance}}], Name - [{{ $labels.instanceName}}]"{%endraw%}
 
           description: {%raw%}"CPU Usage - IP - [{{ $labels.instance}}], Name - [{{ $labels.instanceName}}]"{%endraw%}
+
       - alert: memoryUsageAlert
         expr: memoryUsagePercentage > 80
         for: 2m
