@@ -9,7 +9,7 @@ alerting:
   alertmanagers:
     - static_configs:
         - targets:
-          # - alertmanager:9093
+           - localhost:9093 #same server so locahost we are having alertmanger with port 9093 if some other server have to send it to another server
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
