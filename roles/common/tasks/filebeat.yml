@@ -9,4 +9,6 @@
     state: installed
 
 - name: Copy Filebeat Configuration
-
+  template:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
