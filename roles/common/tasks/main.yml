@@ -8,7 +8,7 @@
 - name: Update Rsyslog Config
   template:
     src: rsyslog.conf
-    dest: /etc/rsyslod.d/roboshop.conf
+    dest: /etc/rsyslog.d/roboshop.conf
   when: COMPONENT_TYPE == "APP"
 
 - name: Restart Rsyslog
