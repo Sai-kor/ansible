@@ -6,8 +6,10 @@ filebeat.inputs:
   fields:
     componentName: {{COMPONENT}}
     env: {{ENV}}
+    logType: json
+
   json.keys_under_root: true
-  #json.add_error_key: true
+  #json.add_error_key: true .. as we do not have any err erro key
   json.message_key: msg
 
 output.logstash:
