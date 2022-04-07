@@ -1,2 +1,3 @@
 COMPONENT: dispatch
 COMPONENT_TYPE: APP
+LOG_FILE: /var/log/nginx/dispatch.log
