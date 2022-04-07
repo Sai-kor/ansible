@@ -1,5 +1,5 @@
 - name: Copy logstash configuration
-  tempalte:
+  template:
     src: logstash.conf
     dest: /etc/logstash/conf.d/logstash.conf
 
