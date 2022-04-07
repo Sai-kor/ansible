@@ -6,9 +6,10 @@ filebeat.inputs:
   fields:
     componentName: {{COMPONENT}}
     env: {{ENV}}
-    logType: json
-
+    logType: {{LOG_TYPE}}
+{% if LOG_TYPE == "json" %}
   json.keys_under_root: true
+{% endif %}
   #json.add_error_key: true .. as we do not have any err erro key
   #json.message_key: msg
 
