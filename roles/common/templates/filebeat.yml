@@ -6,6 +6,9 @@ filebeat.inputs:
   fields:
     componentName: {{COMPONENT}}
     env: {{ENV}}
+  json.keys_under_root: true
+  #json.add_error_key: true
+  json.message_key: msg
 
 output.logstash:
   hosts: ["logstash.devops.internal:5044"]
