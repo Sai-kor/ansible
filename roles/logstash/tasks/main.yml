@@ -1,0 +1,11 @@
+- name: Copy logstash configuration
+  tempalte:
+    src: logstash.conf
+    dest: /etc/logstash/conf.d/logstash.conf
+
+- name: restart logstash
+  systemd:
+    name: logstash
+    state: restarted
+    enabled: yes
+
