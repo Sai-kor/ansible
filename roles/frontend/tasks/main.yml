@@ -42,6 +42,12 @@
     dest: /etc/nginx/default.d/roboshop.conf
   notify: Restart nginx
 
+- name: copy Nginx Main COnfig
+  ansible.builtin.template:
+    src: nginx.conf
+    dest: /etc/nginx/default.d/nginx.conf
+  notify: Restart nginx
+
 - name: start nginx
   ansible.builtin.systemd:
     name: nginx
