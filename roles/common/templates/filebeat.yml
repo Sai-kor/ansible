@@ -12,7 +12,12 @@ filebeat.inputs:
 {% endif %}
   #json.add_error_key: true .. as we do not have any err erro key
   #json.message_key: msg
-
+{% if APP_LANG == "java" %}
+  multiline.type: pattern
+  multiline.pattern: '^\['
+  multiline.negate: true
+  multiline.match: after
+{% endif %}
 output.logstash:
   hosts: ["logstash.devops.internal:5044"]
 
