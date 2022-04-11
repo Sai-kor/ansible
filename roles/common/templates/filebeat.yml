@@ -7,6 +7,7 @@ filebeat.inputs:
     componentName: {{COMPONENT}}
     env: {{ENV}}
     logType: {{LOG_TYPE}}
+    appLang: {{APP_LANG}}
 {% if LOG_TYPE == "json" %}
   json.keys_under_root: true
 {% endif %}
@@ -17,6 +18,10 @@ filebeat.inputs:
   multiline.pattern: "^[0-9][0-9][0-9][0-9]"
   multiline.negate: true
   multiline.match: after
+{% endif %}
+{% if APP_LANG == "python" %}
+  include_lines:
+    - '^\['
 {% endif %}
 output.logstash:
   hosts: ["logstash.devops.internal:5044"]
