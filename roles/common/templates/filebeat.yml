@@ -8,7 +8,7 @@ filebeat.inputs:
     env: {{ENV}}
     logType: {{LOG_TYPE}}
     appLang: {{APP_LANG}}
-{% if logType == "json" %}
+{% if LOG_TYPE == "json" %}
   json.keys_under_root: true
 {% endif %}
 {% if APP_LANG == "java" %}
