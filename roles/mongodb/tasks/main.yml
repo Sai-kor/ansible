@@ -7,7 +7,7 @@
   ansible.builtin.yum:
       name: mongodb-org
       state: installed
-      useUnifiedTopology: true
+
 
 - name: Update mongodb config file to listen on 0.0.0.0
   ansible.builtin.replace:
