@@ -10,7 +10,6 @@ filebeat.inputs:
     appLang: {{APP_LANG}}
 {% if LOG_TYPE == "json" %}
   json.keys_under_root: true
-  json.overwrite_keys: true
 {% endif %}
 {% if APP_LANG == "java" %}
   multiline.pattern: "^[0-9][0-9][0-9][0-9]"
